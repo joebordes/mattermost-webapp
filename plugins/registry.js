@@ -79,6 +79,29 @@ export default class PluginRegistry {
         return dispatchPluginComponentAction('LeftSidebarHeader', this.id, component);
     }
 
+    // Register an App in the list of apps.
+    // Accepts a React component. Returns a unique identifier.
+    registerTeamAppComponent(component, show = () => true) {
+        const id = generateId();
+        store.dispatch({
+            type: ActionTypes.RECEIVED_PLUGIN_COMPONENT,
+            name: 'TeamApp',
+            data: {
+                id,
+                pluginId: this.id,
+                component,
+                show,
+            },
+        });
+        return id;
+    }
+
+    // Register App visualization in the center panel.
+    // Accepts an id for the url and a React component. Returns a unique identifier.
+    registerAppCenterComponent(id, component) {
+        return dispatchPluginComponentAction('App.' + id, this.id, component);
+    }
+
     // Register a component fixed to the bottom of the team sidebar. Does not render if
     // user is only on one team and the team sidebar is not shown.
     // Accepts a React component. Returns a unique identifier.

@@ -3127,6 +3127,7 @@
   "sidebar_right_menu.console": "System Console",
   "sidebar_right_menu.flagged": "Flagged Posts",
   "sidebar_right_menu.recentMentions": "Recent Mentions",
+  "sidebar.applications": "Applications",
   "sidebar.browseChannelDirectChannel": "Browse Channels and Direct Messages",
   "sidebar.createChannel": "Create new public channel",
   "sidebar.createDirectMessage": "Create new direct message",
