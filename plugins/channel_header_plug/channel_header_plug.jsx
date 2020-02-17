@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 import {RootCloseWrapper} from 'react-overlays';
+import classNames from 'classnames';
 
 import HeaderIconWrapper from 'components/channel_header/components/header_icon_wrapper';
 import PluginChannelHeaderIcon from '../../components/widgets/icons/plugin_channel_header_icon';
@@ -119,7 +120,7 @@ export default class ChannelHeaderPlug extends React.PureComponent {
     createButton = (plug) => {
         return (
             <HeaderIconWrapper
-                buttonClass='channel-header__icon style--none'
+                buttonClass={classNames('channel-header__icon style--none', {active: plug.active && plug.active()})}
                 iconComponent={plug.icon}
                 onClick={() => plug.action(this.props.channel, this.props.channelMember)}
                 buttonId={plug.id}
@@ -186,8 +187,7 @@ export default class ChannelHeaderPlug extends React.PureComponent {
     }
 
     render() {
-        const components = this.props.components || [];
-
+        const components = (this.props.components || []).filter((c) => !c.show || c.show());
         if (components.length === 0) {
             return null;
         } else if (components.length === 1) {
